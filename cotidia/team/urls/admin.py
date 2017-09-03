@@ -5,7 +5,12 @@ from cotidia.team.views.admin.member import (
     MemberCreate,
     MemberDetail,
     MemberUpdate,
-    MemberDelete
+    MemberDelete,
+)
+from cotidia.team.views.admin.membersocial import (
+    MemberSocialCreate,
+    MemberSocialUpdate,
+    MemberSocialDelete
 )
 
 urlpatterns = [
@@ -33,5 +38,20 @@ urlpatterns = [
         r'^member/(?P<pk>[\d]+)/delete$',
         MemberDelete.as_view(),
         name='member-delete'
+    ),
+    url(
+        r'^member/(?P<parent_id>[\d]+)/social/add$',
+        MemberSocialCreate.as_view(),
+        name='membersocial-add'
+    ),
+    url(
+        r'^member/(?P<parent_id>[\d]+)/social/(?P<pk>[\d]+)/update$',
+        MemberSocialUpdate.as_view(),
+        name='membersocial-update'
+    ),
+    url(
+        r'^member/(?P<parent_id>[\d]+)/social/(?P<pk>[\d]+)/delete$',
+        MemberSocialDelete.as_view(),
+        name='membersocial-delete'
     ),
 ]

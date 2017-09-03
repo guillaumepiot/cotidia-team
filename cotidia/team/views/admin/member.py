@@ -1,3 +1,7 @@
+import django_filters
+
+from django.db.models import Q
+
 from cotidia.admin.views import (
     AdminListView,
     AdminDetailView,
@@ -13,13 +17,33 @@ from cotidia.team.forms.admin.member import (
 )
 
 
+class MemberFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(
+        label="Name",
+        method="filter_name"
+    )
+
+    class Meta:
+        model = Member
+        fields = ['name', 'active']
+
+    def filter_name(self, queryset, name, value):
+        return queryset.filter(
+            Q(first_name__icontains=value) |
+            Q(last_name__icontains=value)
+        )
+
+
 class MemberList(AdminListView):
     columns = (
         ('Name', 'name'),
         ('Role', 'role'),
+        ('Slug', 'slug'),
         ('Active', 'active'),
     )
     model = Member
+    filterset = MemberFilter
+    template_type = "centered"
 
 
 class MemberDetail(AdminDetailView):
@@ -28,18 +52,18 @@ class MemberDetail(AdminDetailView):
         {
             "legend": "Member details",
             "fields": [
-                # [
-                #     {
-                #         "label": "Name",
-                #         "field": "name",
-                #     }
-                # ],
+                [
+                    {
+                        "label": "Name",
+                        "field": "name",
+                    }
+                ],
                 {
                     "label": "Role",
                     "field": "role",
                 },
                 {
-                    "label": "URL",
+                    "label": "Slug",
                     "field": "slug",
                 },
                 {
@@ -71,10 +95,10 @@ class MemberDetail(AdminDetailView):
                 }
             ]
         },
-        # {
-        #     "legend": "Social networks",
-        #     "template_name": "admin/team/member/social_networks.html"
-        # }
+        {
+            "legend": "Social networks",
+            "template_name": "admin/team/member/social_networks.html"
+        }
     ]
 
 
