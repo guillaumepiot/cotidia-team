@@ -18,3 +18,19 @@ INSTALLED_APPS=[
 
 ]
 ```
+
+## Template tags
+
+In order to retrieve all the team members on a page, you can use the
+template tag `get_team_members`.
+
+It will return all the active members in order of order id.
+
+```html
+{% load team_tags %}
+{% get_team_members as members %}
+
+{% for member in members %}
+    {{member}}
+{% endfor %}
+```
