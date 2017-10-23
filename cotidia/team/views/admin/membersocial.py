@@ -4,12 +4,11 @@ from cotidia.admin.views import (
     AdminChildDeleteView,
 )
 
-from cotidia.team.models import MemberSocial
+from cotidia.team.models import Member, MemberSocial
 from cotidia.team.forms.admin.membersocial import (
     MemberSocialAddForm,
     MemberSocialUpdateForm,
 )
-from cotidia.team.models import Member
 
 
 class MemberSocialCreate(AdminChildCreateView):
