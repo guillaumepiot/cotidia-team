@@ -41,7 +41,7 @@ class MemberSocial(models.Model):
         ('INSTAGRAM', 'Instagram'),
         ('BEHANCE', 'Behance'),
     )
-    member = models.ForeignKey("team.Member")
+    member = models.ForeignKey("team.Member", on_delete=models.CASCADE)
     network = models.CharField(max_length=50, choices=SOCIAL_NETWORKS)
     url = models.URLField(max_length=250)
 

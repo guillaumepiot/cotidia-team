@@ -13,6 +13,8 @@ from cotidia.team.views.admin.membersocial import (
     MemberSocialDelete
 )
 
+app_name = 'team'
+
 urlpatterns = [
     url(
         r'^members/$',
