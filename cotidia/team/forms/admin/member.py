@@ -6,7 +6,7 @@ from cotidia.team.models import Member
 class MemberAddForm(BetterModelForm):
     class Meta:
         model = Member
-        exclude = ['created_at', 'updated_at']
+        exclude = ['created_at', 'updated_at', 'order_id']
         fieldsets = (
             ('info', {
                 'fields': (
@@ -31,7 +31,7 @@ class MemberAddForm(BetterModelForm):
 class MemberUpdateForm(BetterModelForm):
     class Meta:
         model = Member
-        exclude = ['created_at', 'updated_at']
+        exclude = ['created_at', 'updated_at', 'order_id']
         fieldsets = (
             ('info', {
                 'fields': (
