@@ -1,7 +1,10 @@
 from django.db import models
 
+from cotidia.core.models import BaseModel
+from cotidia.admin.models import AbstractOrderable
 
-class Member(models.Model):
+
+class Member(AbstractOrderable, BaseModel):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50, null=True)
     slug = models.SlugField(max_length=50, null=True, unique=True)
@@ -12,11 +15,6 @@ class Member(models.Model):
     active = models.BooleanField(default=True)
 
     photo = models.ImageField(upload_to='team', max_length=100, blank=True)
-
-    order_id = models.IntegerField(null=True, blank=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Member'

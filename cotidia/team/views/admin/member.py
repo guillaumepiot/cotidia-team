@@ -40,6 +40,7 @@ class MemberList(AdminListView):
         ('Role', 'role'),
         ('Slug', 'slug'),
         ('Active', 'active'),
+        ('Order', 'order'),
     )
     model = Member
     filterset = MemberFilter
