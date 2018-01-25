@@ -4,6 +4,13 @@ from django.db import migrations, models
 import uuid
 
 
+def create_uuid(apps, schema_editor):
+    Member = apps.get_model('team', 'Member')
+    for m in Member.objects.all():
+        m.uuid = uuid.uuid4()
+        m.save()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -11,9 +18,15 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='member',
             name='uuid',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+            field=models.UUIDField(blank=True, null=True),
         ),
+        migrations.RunPython(create_uuid),
+        migrations.AlterField(
+            model_name='device',
+            name='uuid',
+            field=models.UUIDField(unique=True)
+        )
     ]
