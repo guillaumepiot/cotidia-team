@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         ),
         migrations.RunPython(create_uuid),
         migrations.AlterField(
-            model_name='device',
+            model_name='member',
             name='uuid',
             field=models.UUIDField(unique=True)
         )
