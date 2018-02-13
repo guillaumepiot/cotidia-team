@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from cotidia.team.views.admin.member import (
     MemberList,
@@ -6,6 +6,13 @@ from cotidia.team.views.admin.member import (
     MemberDetail,
     MemberUpdate,
     MemberDelete,
+)
+from cotidia.team.views.admin.department import (
+    DepartmentList,
+    DepartmentCreate,
+    DepartmentDetail,
+    DepartmentUpdate,
+    DepartmentDelete,
 )
 from cotidia.team.views.admin.membersocial import (
     MemberSocialCreate,
@@ -40,6 +47,31 @@ urlpatterns = [
         r'^member/(?P<pk>[\d]+)/delete$',
         MemberDelete.as_view(),
         name='member-delete'
+    ),
+    url(
+        r'^department/$',
+        DepartmentList.as_view(),
+        name='department-list'
+    ),
+    url(
+        r'^department/add$',
+        DepartmentCreate.as_view(),
+        name='department-add'
+    ),
+    url(
+        r'^department/(?P<pk>[\d]+)$',
+        DepartmentDetail.as_view(),
+        name='department-detail'
+    ),
+    url(
+        r'^department/(?P<pk>[\d]+)/update$',
+        DepartmentUpdate.as_view(),
+        name='department-update'
+    ),
+    url(
+        r'^department/(?P<pk>[\d]+)/delete$',
+        DepartmentDelete.as_view(),
+        name='department-delete'
     ),
     url(
         r'^member/(?P<parent_id>[\d]+)/social/add$',

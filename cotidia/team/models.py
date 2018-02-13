@@ -13,6 +13,12 @@ class Member(AbstractOrderable, BaseModel):
     email = models.EmailField(max_length=100, null=True, blank=True)
     phone = models.CharField(max_length=50, null=True, blank=True)
     active = models.BooleanField(default=True)
+    department = models.ForeignKey(
+        "team.Department",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
 
     photo = models.ImageField(upload_to='team', max_length=100, blank=True)
 
@@ -60,3 +66,17 @@ class MemberSocial(models.Model):
         return dict(self.SOCIAL_NETWORKS).get(self.network)
 
 
+class Department(AbstractOrderable, BaseModel):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = "Department"
+        verbose_name_plural = "Departments"
+        ordering = ('order_id',)
+
+    def __str__(self):
+        return '{} Department'.format(self.name)
+
+    @property
+    def members(self):
+        return Member.objects.filter(department=self)
