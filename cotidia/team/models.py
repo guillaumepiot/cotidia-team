@@ -75,7 +75,7 @@ class Department(AbstractOrderable, BaseModel):
         ordering = ('order_id',)
 
     def __str__(self):
-        return '{} Department'.format(self.name)
+        return self.name
 
     @property
     def members(self):
