@@ -79,4 +79,4 @@ class Department(AbstractOrderable, BaseModel):
 
     @property
     def members(self):
-        return Member.objects.filter(department=self)
+        return Member.objects.filter(department=self, active=True)
