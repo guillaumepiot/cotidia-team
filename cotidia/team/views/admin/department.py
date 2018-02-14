@@ -27,7 +27,7 @@ class DepartmentList(AdminListView):
          ("name", "name"),
     )
     model = Department
-    template_type="centered"
+    template_type = "centered"
 
 
 class DepartmentDetail(StaffPermissionRequiredMixin, AdminDetailView):
