@@ -1,12 +1,14 @@
 from django.urls import re_path
 
-from team.views.admin.department import (
+from cotidia.team.views.admin.department import (
     DepartmentList,
     DepartmentCreate,
     DepartmentDetail,
     DepartmentUpdate,
     DepartmentDelete
 )
+
+app_name = "team"
 
 urlpatterns = [
     re_path(r'^$', DepartmentList.as_view(), name='department-list'),
