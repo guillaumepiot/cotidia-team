@@ -1,9 +1,9 @@
-from django.urls import re_path, include
+from django.urls import path, include
 
 app_name = "team"
 urlpatterns = [
-    re_path(r'^member/',
+    path('member/',
             include("cotidia.team.urls.admin.members")),
-    re_path(r'^department/',
+    path('department/',
             include("cotidia.team.urls.admin.department"))
     ]

@@ -8,8 +8,6 @@ from cotidia.team.views.admin.department import (
     DepartmentDelete
 )
 
-app_name = "team"
-
 urlpatterns = [
     re_path(r'^$', DepartmentList.as_view(), name='department-list'),
     re_path(r'^add$', DepartmentCreate.as_view(), name='department-add'),
