@@ -13,6 +13,7 @@ class MemberAddForm(BetterModelForm):
                     ('first_name', 'last_name'),
                     'slug',
                     'role',
+                    'department',
                     'bio',
                     ('email', 'phone'),
                     'active',
@@ -37,6 +38,7 @@ class MemberUpdateForm(BetterModelForm):
                 'fields': (
                     ('first_name', 'last_name'),
                     'role',
+                    'department',
                     'slug',
                     'bio',
                     ('email', 'phone'),
