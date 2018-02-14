@@ -15,10 +15,5 @@ class Migration(migrations.Migration):
             model_name='member',
             old_name='updated_at',
             new_name='modified_at',
-        ),
-        migrations.AddField(
-            model_name='member',
-            name='uuid',
-            field=models.UUIDField(default=uuid.uuid4, editable=False),
-        ),
+        )
     ]
