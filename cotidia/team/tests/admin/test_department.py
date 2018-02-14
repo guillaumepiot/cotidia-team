@@ -1,9 +1,9 @@
 from django.test import TestCase, Client
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from cotidia.account import fixtures
-from team.models import Department
-from team.factory import DepartmentFactory
+from cotidia.team.models import Department
+from cotidia.team.factory import DepartmentFactory
 
 
 class DepartmentAdminTests(TestCase):
@@ -23,7 +23,7 @@ class DepartmentAdminTests(TestCase):
     def test_add_department(self):
         """Test that we can add a new object."""
 
-        url = reverse('team-admin:model-add')
+        url = reverse('team-admin:department-add')
 
         # Test that the page load first
         response = self.c.get(url)
@@ -31,18 +31,14 @@ class DepartmentAdminTests(TestCase):
 
         # Send data
         data = {
-            "id": "<<SETME>>",
-            "order_id": "<<SETME>>",
-            "name": "<<SETME>>",
+            "name": "Fun and games!",
         }
         response = self.c.post(url, data)
         self.assertEqual(response.status_code, 302)
 
         # Get the latest added object
         obj = Department.objects.filter().latest('id')
-        self.assertEqual(obj.id, "<<SETME>>")
-        self.assertEqual(obj.order_id, "<<SETME>>")
-        self.assertEqual(obj.name, "<<SETME>>")
+        self.assertEqual(obj.name, "Fun and games!")
 
     def test_update_department(self):
         """Test that we can update an existing object."""
@@ -60,9 +56,8 @@ class DepartmentAdminTests(TestCase):
 
         # Send data
         data = {
-            "id": "<<SETME>>",
             "order_id": "<<SETME>>",
-            "name": "<<SETME>>",
+            "name": "Fun and games",
         }
         response = self.c.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -70,9 +65,7 @@ class DepartmentAdminTests(TestCase):
         # Get the latest added object
         obj = Department.objects.get(id=self.object.id)
 
-        self.assertEqual(obj.id, "<<SETME>>")
-        self.assertEqual(obj.order_id, "<<SETME>>")
-        self.assertEqual(obj.name, "<<SETME>>")
+        self.assertEqual(obj.name, "Fun and games")
 
     def test_retrieve_department(self):
         """Test that we can retrieve an object from its ID."""
