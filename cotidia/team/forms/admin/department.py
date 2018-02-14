@@ -10,9 +10,16 @@ class DepartmentAddForm(BetterModelForm):
     class Meta:
         model = Department
         fields = [
-            "id",
             "name",
         ]
+        fieldsets = (
+            ('info', {
+                'fields': (
+                    'name',
+                ),
+                'legend': 'Department details'
+            }),
+        )
 
 
 class DepartmentUpdateForm(BetterModelForm):
@@ -20,6 +27,13 @@ class DepartmentUpdateForm(BetterModelForm):
     class Meta:
         model = Department
         fields = [
-            "id",
             "name",
         ]
+        fieldsets = (
+            ('info', {
+                'fields': (
+                    'name',
+                ),
+                'legend': 'Department details'
+            }),
+        )
