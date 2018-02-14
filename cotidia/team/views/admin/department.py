@@ -35,8 +35,8 @@ class DepartmentDetail(StaffPermissionRequiredMixin, AdminDetailView):
     permission_required = 'team.change_model'
     fieldsets = [
         {
-            "legend": 'department Details',
-            "fields":[
+            "legend": 'Department Details',
+            "fields": [
                 [
                     {
                         "label": "ID",
@@ -50,7 +50,6 @@ class DepartmentDetail(StaffPermissionRequiredMixin, AdminDetailView):
                         "label": "name",
                         "field": "name"
                     },
-                    
                 ]
             ]
         }
@@ -71,6 +70,27 @@ class DepartmentUpdate(StaffPermissionRequiredMixin, AdminUpdateView):
     model = Department
     form_class = DepartmentUpdateForm
     permission_required = 'team.change_model'
+    fieldsets = [
+        {
+            "legend": 'Department Details',
+            "fields": [
+                [
+                    {
+                        "label": "ID",
+                        "field": "id"
+                    },
+                    {
+                        "label": "order id",
+                        "field": "order_id"
+                    },
+                    {
+                        "label": "name",
+                        "field": "name"
+                    },
+                ]
+            ]
+        }
+    ]
 
     def get_success_url(self):
         messages.success(self.request, 'Department details have been updated.')
