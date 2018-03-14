@@ -27,6 +27,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='member',
             name='uuid',
-            field=models.UUIDField(unique=True)
+            field=models.UUIDField(unique=True, editable=False)
         )
     ]

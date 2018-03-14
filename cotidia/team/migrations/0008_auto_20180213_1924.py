@@ -26,11 +26,6 @@ class Migration(migrations.Migration):
                 'abstract': False,
             },
         ),
-        migrations.AlterField(
-            model_name='member',
-            name='uuid',
-            field=models.UUIDField(default=uuid.uuid4, editable=False),
-        ),
         migrations.AddField(
             model_name='member',
             name='department',
