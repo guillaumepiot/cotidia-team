@@ -1,6 +1,7 @@
 import django_filters
 
 from django.db.models import Q
+from django import forms
 
 from cotidia.admin.views import (
     AdminListView,
@@ -20,7 +21,8 @@ from cotidia.team.forms.admin.member import (
 class MemberFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(
         label="Name",
-        method="filter_name"
+        method="filter_name",
+        widget=forms.TextInput(attrs={'placeholder': 'Search'})
     )
 
     class Meta:
