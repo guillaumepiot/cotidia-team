@@ -19,6 +19,27 @@ INSTALLED_APPS=[
 ]
 ```
 
+## URLs
+
+```python
+urlpatterns = [
+    path(
+        'admin/team/',
+        include('cotidia.team.urls.admin', namespace="team-admin")
+    ),
+]
+```
+
+## Add to admin
+
+```python
+ADMIN_MENU_DEFINITION = {
+    'Website': [
+        "cotidia.team",
+    ],
+}
+```
+
 ## Template tags
 
 In order to retrieve all the team members on a page, you can use the
