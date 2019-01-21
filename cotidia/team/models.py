@@ -28,10 +28,11 @@ class Member(AbstractOrderable, BaseModel):
         ordering = ('order_id',)
 
     def __str__(self):
-        return self.name()
+        return self.name
 
+    @property
     def name(self):
-        return "{} {}".format(self.first_name, self.last_name)
+        return f"{self.first_name} {self.last_name}"
 
     def social_networks(self):
         return self.membersocial_set.all()
