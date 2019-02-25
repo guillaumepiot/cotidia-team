@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.contrib import messages
 from django import forms
 
-from cotidia.account.utils import StaffPermissionRequiredMixin
 from cotidia.admin.views import (
     AdminListView,
     AdminDetailView,
@@ -35,7 +34,7 @@ class DepartmentList(AdminListView):
     filterset = DepartmentFilter
 
 
-class DepartmentDetail(StaffPermissionRequiredMixin, AdminDetailView):
+class DepartmentDetail(AdminDetailView):
     model = Department
     permission_required = "team.change_model"
     fieldsets = [
@@ -52,7 +51,7 @@ class DepartmentDetail(StaffPermissionRequiredMixin, AdminDetailView):
     ]
 
 
-class DepartmentCreate(StaffPermissionRequiredMixin, AdminCreateView):
+class DepartmentCreate(AdminCreateView):
     model = Department
     form_class = DepartmentAddForm
     permission_required = "team.add_model"
@@ -62,7 +61,7 @@ class DepartmentCreate(StaffPermissionRequiredMixin, AdminCreateView):
         return reverse("team-admin:department-detail", kwargs={"pk": self.object.id})
 
 
-class DepartmentUpdate(StaffPermissionRequiredMixin, AdminUpdateView):
+class DepartmentUpdate(AdminUpdateView):
     model = Department
     form_class = DepartmentUpdateForm
     permission_required = "team.change_model"
@@ -84,7 +83,7 @@ class DepartmentUpdate(StaffPermissionRequiredMixin, AdminUpdateView):
         return reverse("team-admin:department-detail", kwargs={"pk": self.object.id})
 
 
-class DepartmentDelete(StaffPermissionRequiredMixin, AdminDeleteView):
+class DepartmentDelete(AdminDeleteView):
     model = Department
     permission_required = "app.delete_model"
 
