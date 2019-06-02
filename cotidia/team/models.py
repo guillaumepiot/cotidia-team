@@ -32,7 +32,7 @@ class Member(AbstractOrderable, BaseModel):
 
     @property
     def name(self):
-        return f"{self.first_name} {self.last_name}"
+        return "{} {}".format(self.first_name, self.last_name)
 
     def social_networks(self):
         return self.membersocial_set.all()
